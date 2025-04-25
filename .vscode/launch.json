@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Flutter Web (Chrome) with API Key",
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "chrome",
+        "args": [
+          "--dart-define=HUGGING_FACE_API_KEY=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"
+        ]
+      }
+    ]
+  }
+  

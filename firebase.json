@@ -1,0 +1,66 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "adhdtaskmanager-e5706",
+          "appId": "1:716582926052:android:d9c10f5281c845f17e5ef1",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "adhdtaskmanager-e5706",
+          "configurations": {
+            "android": "1:716582926052:android:d9c10f5281c845f17e5ef1",
+            "ios": "1:716582926052:ios:cb396b46a7f00ae27e5ef1",
+            "macos": "1:716582926052:ios:cb396b46a7f00ae27e5ef1",
+            "web": "1:716582926052:web:4a25ea30aeebbc5d7e5ef1",
+            "windows": "1:716582926052:web:e516994ed5e6ae3b7e5ef1"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions_v2",
+      "codebase": "adhdtaskmanager",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint"
+      ]
+    }
+  ],
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "functions": {
+      "port": 5001
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true,
+    "storage": {
+      "port": 9199
+    }
+  }
+}
