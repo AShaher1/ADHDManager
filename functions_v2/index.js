@@ -1,6 +1,7 @@
 const {onCall} = require("firebase-functions/v2/https");
 const logger = require("firebase-functions/logger");
 const {OpenAI} = require("openai");
+const axios = require("axios");  // Import axios 
 
 // Cloud function to proxy requests to OpenAI API
 exports.callOpenAI = onCall({
@@ -48,5 +49,30 @@ exports.callOpenAI = onCall({
   } catch (error) {
     logger.error("OpenAI API error:", error);
     throw new Error(`Error calling OpenAI API: ${error.message}`);
+  }
+});
+
+// Cloud function to fetch ZenQuotes
+exports.getZenQuote = onCall({
+  enforceAppCheck: false,  // Set to true in production for additional security
+  maxInstances: 10,
+}, async (request) => {
+  try {
+    logger.info("ZenQuote function called", { structuredData: true });
+
+    // Fetch the quote from ZenQuotes API using axios
+    const response = await axios.get('https://zenquotes.io/api/random');
+    
+    // Log the response data
+    logger.info("ZenQuotes response received", response.data);
+
+    // Return the quote
+    return {
+      quote: response.data[0].q,
+      author: response.data[0].a,
+    };
+  } catch (error) {
+    logger.error("Error fetching ZenQuote:", error);
+    throw new Error(`Error fetching ZenQuote: ${error.message}`);
   }
 });
